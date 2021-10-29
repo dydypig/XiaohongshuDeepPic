@@ -22,18 +22,23 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="#">Deep Picture</a>
+          <a class="navbar-brand mr-4" href='{% url "home"%}'>Deep Picture</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="#">Home</a>
-              <a class="nav-item nav-link" href="#">About</a>
+                {% if user.is_superuser or user.is_staff %}
+                    <a class="nav-item nav-link" href='{% url "cloud_upload"%}'>Upload Cloup Pictures</a>
+                {% else %}
+                    <a class="nav-item nav-link" href='{% url "login"%}'>Admin Log in</a>
+                {% endif %}
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              
+                {% if user.is_superuser or user.is_staff %}
+                    <a class="nav-item nav-link" href='{% url "logout"%}'>Log out</a>
+                {% endif %}
             </div>
           </div>
         </div>

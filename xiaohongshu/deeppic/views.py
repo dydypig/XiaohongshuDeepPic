@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from .api_for_xin import process_your_picture
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, AccessMixin 
 
 def cloud_pic_select(request,pk):
     user =  request.user
@@ -50,10 +51,11 @@ def home(request):
     return render(request,'deeppic/home.html',context)
 
 
-class FileFieldFormView(FormView):
+class FileFieldFormView(UserPassesTestMixin,FormView):
     form_class = FileFieldForm
-    template_name = 'deeppic/home.html'  # Replace with your template.
+    template_name = 'deeppic/upload.html'  # Replace with your template.
     success_url = '/' # Replace with your URL or reverse().
+    permission_denied_message = 'You are not admin'
 
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
@@ -66,6 +68,8 @@ class FileFieldFormView(FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+    def test_func(self):
+        return (self.request.user.is_staff or self.request.user.is_superuser)
 
 class CloudPicsView(ListView):
     model = CloudPics
