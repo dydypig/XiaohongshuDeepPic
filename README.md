@@ -1,22 +1,22 @@
 # Deep Picture For Xin Song
 
 ## Requirements
-python 3.8
+python 3.8<br />
 
 ## Packages to install
-pip install -r requirements.txt
+pip install -r requirements.txt<br />
 
 ## Initialization
-cd xiaohongshu
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
+cd xiaohongshu<br />
+python manage.py makemigrations<br />
+python manage.py migrate<br />
+python manage.py createsuperuser<br />
 
 ## Run localhost server
-python manage.py runserver
+python manage.py runserver<br />
 
 ## Go to 127.0.0.1 or localhost using your web browser
 
 ## implement your function to process images
-edit the following file:
-xiaohongshu/deeppic/api_for_xin.py
+edit the following file:<br />
+xiaohongshu/deeppic/api_for_xin.py<br />
