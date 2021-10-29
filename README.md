@@ -15,7 +15,7 @@ python manage.py createsuperuser<br />
 ## Run localhost server
 python manage.py runserver<br />
 
-## Go to 127.0.0.1 or localhost using your web browser
+## Go to 127.0.0.1:8000 or localhost:8000 using your web browser
 
 ## implement your function to process images
 edit the following file:<br />
