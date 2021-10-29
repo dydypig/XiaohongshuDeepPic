@@ -1,0 +1,31 @@
+{% extends "deeppic/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-info" type="submit">Upload Local Pics</button>
+        </form>
+        <br>
+        {% if localpic.imagelocal %}
+            <img class="account-img" src="{{ localpic.imagelocal.url }}">
+        {% endif %}
+    </div>
+    <div class="content-section">
+        <a class="btn btn-outline-info" href="{% url 'cloud_pics'%}">Select Cloup Pics</a>
+        <br>
+        <br>
+        {% if localpic.imagecloud %}
+            <img class="account-img" src="{{ localpic.imagecloud.url }}">
+        {% endif %}
+    </div>
+    <div class="content-section">
+        <a class="btn btn-outline-info" href="{% url 'process_pic'%}">Process Pictures</a>
+        <br>
+        <br>
+        {% if localpic.imagedisplay %}
+            <img class="account-img" src="{{ localpic.imagedisplay.url }}">
+        {% endif %}
+    </div>
+{% endblock content %}
